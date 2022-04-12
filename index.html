@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>ワード-HTMLコンバート</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #view {
+            width: 45%;
+            overflow: auto;
+            float: left;
+        }
+
+        #code {
+            width: 45%;
+        }
+    </style>
+    <script>
+        document.execCommand("DefaultParagraphSeparator", false, "p");
+        addEventListener('load', function () {
+            preview();
+        });
+        document.addEventListener('keyup', function () {
+            preview();
+        });
+        document.addEventListener('paste', function () {
+            window.setTimeout(preview, 0);
+        });
+        function preview() {
+            var obj = document.activeElement;
+            var view = document.getElementById('view');
+            var code = document.getElementById("code");
+            document.getElementById("view").style.height = window.innerHeight - 50 + "px";
+            document.getElementById("code").style.height = window.innerHeight - 50 + "px";
+            if (obj.id == "view") {
+                code.value = view.innerHTML;
+            } else {
+                view.innerHTML = code.value;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="view" contenteditable="true"></div>
+    <textarea id="code">
+<h3 style="color:navy;font-size:30px;">Word-HTMLコンバート</h3>
+
+<p>ここにワードで作った文書をコピーして貼り付けするとHTMLに変換されます</p>
+
+</textarea>
+</body>
+
+</html>
